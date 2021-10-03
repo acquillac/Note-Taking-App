@@ -12,9 +12,24 @@ function addNote(){
     grid.appendChild(newEl)
     console.log(newEl);
     document.getElementById('new-note').value = '';
+
+    const notes = document.querySelectorAll('p');
+    notes.forEach(notes => {
+    notes.addEventListener('click', e=>{
+        showbox.classList.add('active');
+
+        const newPar = document.createElement('p');
+        newPar.innerHTML = notes.innerHTML;
+
+        while(showbox.firstChild){
+            showbox.removeChild(showbox.firstChild)
+        }
+
+        showbox.appendChild(newPar);
+    })
+    })
+   
 }
-
-
 
 
 // Showcase a note
@@ -29,10 +44,16 @@ notes.forEach(notes => {
 
         const newPar = document.createElement('p');
         newPar.innerHTML = notes.innerHTML;
-
-        console.log(newPar.innerHTML);
+        
+        while(showbox.firstChild){
+            showbox.removeChild(showbox.firstChild)
+        }
 
         showbox.appendChild(newPar);
     })
 })
 
+showbox.addEventListener('click', e =>{
+    if(e.target !== e.currentTarget) return
+    showbox.classList.remove('active');
+})

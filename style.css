@@ -6,17 +6,63 @@
 
 body{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: rgb(244, 245, 189);
 }
 
 p{
-    text-align: center;
-    min-height: 15vh;
+    margin: 20px 20px;
+    text-align: center;  
+    max-width: 275px;
+    min-height: 14vh;
     padding: 25px 5px;
     background-color: rgb(198, 246, 244);
+    box-shadow: 4px 5px 5px rgba(51, 51, 51, 0.726);
+    transition: transform 0.2s ease;
+}
+
+p:hover{
+    transform: translateY(-10%);
+}
+
+h1{
+    margin-bottom: 10px;
+    border-bottom: 1px solid black;
+}
+
+button{
+    padding: 5px 8px;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 5px;
+    border: hidden;
+    background: rgb(87, 192, 148);
+    color: #555;
+    box-shadow: 2px 2px 2px #333;
+    transition: transform 0.2s ease;
+}
+
+button:hover{
+    background: rgb(102, 224, 173);
+    color: rgb(121, 121, 121);
+    transform: translateY(-10%);
+}
+
+textarea{
+    padding: 5px;
+    border: hidden;
+    border-radius: 5px;
+    font-size: 1.5rem;
+}
+
+textarea:focus{
+    outline: none;
 }
 
 .input-container{
     padding: 2rem;
+    background: rgb(231, 190, 76);
+    
 }
 
 .input-container button{
@@ -25,8 +71,8 @@ p{
 
 .grid-container{
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    grid-gap: 0.4rem;
+    grid-template-columns: repeat(5,1fr);
+    border-top: 1px solid rgb(182, 149, 60)
 }
 
 #showbox{

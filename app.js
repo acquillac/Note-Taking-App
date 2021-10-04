@@ -1,9 +1,38 @@
+
+
+
+// Checking for notes
+document.addEventListener('DOMContentLoaded', getNotes);
+function getNotes(textBox){
+    let textBoxs;
+    if(localStorage.getItem('textBoxs') === null){
+        textBoxs = [];
+    }else{
+        textBoxs = JSON.parse(localStorage.getItem('textBoxs'));
+    }
+    textBoxs.forEach(function(textBox){
+        
+        const textNode = document.createTextNode(textBox);
+        const newEl = document.createElement('p');
+        newEl.className = 'note';
+        newEl.appendChild(textNode);
+        const grid = document.getElementById('grid-container');
+        grid.appendChild(newEl)
+        console.log(newEl);
+        document.getElementById('new-note').value = '';
+    });
+
+    }
+
 // Add a new note
 const addNoteBtn = document.getElementById('submit');
 addNoteBtn.addEventListener('click', addNote);
 
 function addNote(){
     const textBox = document.getElementById('new-note').value;
+    if(textBox ===''){
+        alert('Add a Note');
+    }
     const textNode = document.createTextNode(textBox);
     const newEl = document.createElement('p');
     newEl.className = 'note';
@@ -12,6 +41,9 @@ function addNote(){
     grid.appendChild(newEl)
     console.log(newEl);
     document.getElementById('new-note').value = '';
+
+    // adding to storage
+    storeInLocalStorage(textBox);
 
     const notes = document.querySelectorAll('p');
     notes.forEach(notes => {
@@ -27,9 +59,20 @@ function addNote(){
 
         showbox.appendChild(newPar);
     })
-    })
-   
+    })   
 }
+
+// Storage
+function storeInLocalStorage(textBox){
+    let textBoxs;
+    if(localStorage.getItem('textBoxs') === null){
+        textBoxs = [];
+    }else{
+        textBoxs = JSON.parse(localStorage.getItem('textBoxs'));
+    }
+    textBoxs.push(textBox);
+    localStorage.setItem('textBoxs', JSON.stringify(textBoxs))
+    }
 
 
 // Showcase a note

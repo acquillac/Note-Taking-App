@@ -44,15 +44,12 @@ function getNotes(textBox){
     })
 }
 
-// Add a new note
+// Adding New Note
 const addNoteBtn = document.getElementById('submit');
 addNoteBtn.addEventListener('click', addNote);
 
 function addNote(){
     const textBox = document.getElementById('new-note').value;
-    if(textBox ===''){
-        alert('Add a Note');
-    }
     const textNode = document.createTextNode(textBox);
     const newEl = document.createElement('p');
     newEl.className = 'note';
@@ -82,7 +79,7 @@ function addNote(){
     })   
 }
 
-// Storage
+// Storing
 function storeInLocalStorage(textBox){
     let textBoxs;
     if(localStorage.getItem('textBoxs') === null){
@@ -93,3 +90,13 @@ function storeInLocalStorage(textBox){
     textBoxs.push(textBox);
     localStorage.setItem('textBoxs', JSON.stringify(textBoxs))
     }
+
+// Removing All Notes
+const rmvButton = document.getElementById('remove-all');
+rmvButton.addEventListener('click', removeALL);
+function removeALL(){
+    if(confirm('Are You Sure You Want To Remove All Notes?')){
+        localStorage.clear();
+        location.reload();
+    }
+}

@@ -42,6 +42,14 @@ button{
     transition: transform 0.2s ease;
 }
 
+#remove-all{
+    background-color: rgb(251, 136, 136);
+}
+
+#remove-all:hover{
+    background-color: rgb(255, 161, 161);
+}   
+
 button:hover{
     background: rgb(102, 224, 173);
     color: rgb(121, 121, 121);

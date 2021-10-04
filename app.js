@@ -1,5 +1,7 @@
-
-
+// Showcase a note
+const showbox = document.createElement('div'); 
+showbox.id = 'showbox';
+document.body.appendChild(showbox);
 
 // Checking for notes
 document.addEventListener('DOMContentLoaded', getNotes);
@@ -18,11 +20,29 @@ function getNotes(textBox){
         newEl.appendChild(textNode);
         const grid = document.getElementById('grid-container');
         grid.appendChild(newEl)
-        console.log(newEl);
         document.getElementById('new-note').value = '';
     });
 
-    }
+    const notes = document.querySelectorAll('p');
+    notes.forEach(notes => {
+    notes.addEventListener('click', e=>{
+        showbox.classList.add('active');
+
+        const newPar = document.createElement('p');
+        newPar.innerHTML = notes.innerHTML;
+
+        while(showbox.firstChild){
+            showbox.removeChild(showbox.firstChild)
+        }
+
+        showbox.appendChild(newPar);
+    })
+    })
+    showbox.addEventListener('click', e =>{
+        if(e.target !== e.currentTarget) return
+        showbox.classList.remove('active');
+    })
+}
 
 // Add a new note
 const addNoteBtn = document.getElementById('submit');
@@ -39,12 +59,12 @@ function addNote(){
     newEl.appendChild(textNode);
     const grid = document.getElementById('grid-container');
     grid.appendChild(newEl)
-    console.log(newEl);
     document.getElementById('new-note').value = '';
 
-    // adding to storage
+    // Adding To Storage
     storeInLocalStorage(textBox);
 
+    // Adding Showcase New Note
     const notes = document.querySelectorAll('p');
     notes.forEach(notes => {
     notes.addEventListener('click', e=>{
@@ -73,30 +93,3 @@ function storeInLocalStorage(textBox){
     textBoxs.push(textBox);
     localStorage.setItem('textBoxs', JSON.stringify(textBoxs))
     }
-
-
-// Showcase a note
-const showbox = document.createElement('div'); 
-showbox.id = 'showbox';
-document.body.appendChild(showbox);
-
-const notes = document.querySelectorAll('p');
-notes.forEach(notes => {
-    notes.addEventListener('click', e=>{
-        showbox.classList.add('active');
-
-        const newPar = document.createElement('p');
-        newPar.innerHTML = notes.innerHTML;
-        
-        while(showbox.firstChild){
-            showbox.removeChild(showbox.firstChild)
-        }
-
-        showbox.appendChild(newPar);
-    })
-})
-
-showbox.addEventListener('click', e =>{
-    if(e.target !== e.currentTarget) return
-    showbox.classList.remove('active');
-})

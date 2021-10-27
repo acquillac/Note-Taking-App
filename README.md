@@ -1,2 +1,2 @@
 # Note Taking app
-Work in progress
+Simple note taking app.
